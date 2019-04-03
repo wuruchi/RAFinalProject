@@ -1,0 +1,103 @@
+---
+title: "Randomized Algorithms Analysis"
+author: "Wilmer Uruchi"
+date: "12/11/2018"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Randomized Algorithms Analysis
+
+Include libraries
+
+```{r cars}
+library(dplyr)
+library(lubridate)
+library(stringr)
+library(ggplot2)
+library(reshape2)
+```
+
+## Plot
+
+data transformation:
+
+```{r pressure, echo=FALSE}
+resultsExperiment %>%
+  filter(RMedianSuccess == 'FAIL')
+```
+
+Plot:
+
+```{r}
+ggplot(data=resultsQsort, aes(x = Array, y = time)) +
+  geom_line() +
+  geom_point()
+
+ggplot(data=resultsQselect, aes(x = Array, y = time)) +
+  geom_line() +
+  geom_point()
+
+ggplot(data=resultsRMedian, aes(x = Array, y = time)) +
+  geom_line() +
+  geom_point()
+
+```
+
+Plot 2:
+
+```{r}
+ggplot(resultExperiment, aes(File)) + 
+  geom_point(aes(y = ILOGCPLEX, colour = "ILOGCPLEX")) + 
+  geom_point(aes(y = GreedyLocal, colour = "GreedyLocal")) +
+  geom_point(aes(y = GRASP, colour = "GRASP")) +
+  geom_line(aes(y = ILOGCPLEX, colour = "ILOGCPLEX")) + 
+  geom_line(aes(y = GreedyLocal, colour = "GreedyLocal")) +
+  geom_line(aes(y = GRASP, colour = "GRASP")) +
+  ggtitle("Results") +
+  labs(y = 'Time (s)')
+
+ggplot(resultsObjective, aes(File)) + 
+  geom_point(aes(y = ILOGCPLEX, colour = "ILOGCPLEX")) + 
+  geom_point(aes(y = GreedyLocal, colour = "GreedyLocal")) +
+  geom_point(aes(y = GRASP, colour = "GRASP")) +
+  geom_line(aes(y = ILOGCPLEX, colour = "ILOGCPLEX")) + 
+  geom_line(aes(y = GreedyLocal, colour = "GreedyLocal")) +
+  geom_line(aes(y = GRASP, colour = "GRASP")) +
+  ggtitle("Results") +
+  labs(y = 'Objective Value')
+
+# ggplot(resultsAsc, aes(Array)) + 
+#   geom_line(aes(y = timeQSort, colour = "timeQSort")) + 
+#   geom_line(aes(y = timeQSelect, colour = "timeQSelect")) +
+#   geom_line(aes(y = timeRMedian, colour = "timeRMedian")) +
+#   ggtitle("Ascending Order Arrays") +
+#   labs(y = 'time')
+# 
+# ggplot(resultsDesc, aes(Array)) + 
+#   geom_line(aes(y = timeQSort, colour = "timeQSort")) + 
+#   geom_line(aes(y = timeQSelect, colour = "timeQSelect")) +
+#   geom_line(aes(y = timeRMedian, colour = "timeRMedian")) +
+#   ggtitle("Descending Order Arrays") +
+#   labs(y = 'time')
+
+```
+
+Summaries:
+
+```{r}
+# resultsRandom %>%
+#   summarise(mean_qsort = mean(timeQSort), mean_qselect = mean(timeQSelect), sd_qs = sd(timeQSelect), max_qs = max(timeQSelect), mean_rmedian = mean(timeRMedian), sd_rm = sd(timeRMedian))
+# 
+# resultsAsc %>%
+#   summarise(mean_qsort = mean(timeQSort), mean_qselect = mean(timeQSelect), sd_qs = sd(timeQSelect), mean_rmedian = mean(timeRMedian), sd_rm = sd(timeRMedian))
+
+resultsExperiment %>%
+  summarise(mean_qsort = mean(timeQSort), mean_qselect = mean(timeQSelect), sd_qselect = sd(timeQSelect), mean_rmedian = mean(timeRMedian), sd_rmedian = sd(timeRMedian))
+```
+
