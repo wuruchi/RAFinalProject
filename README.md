@@ -7,7 +7,7 @@ The following is an experiment of the running time of three algorithms to find t
 
 Although the research that led into this project has been thoroughly performed, it is important to note that this is a 1st Semester Course and there is ample room for improvement. For the most part, this is a introductory project.
 
-Review __2nd_Assignment.pdf__ for the full report of the project.
+Review __Assignment.pdf__ for the full report of the project.
 
 Best Regards,
 
